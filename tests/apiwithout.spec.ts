@@ -17,11 +17,11 @@ test.describe('API interception test', () => {
         await browser.close();
     });
 
-    test('should intercept API call on login with name of API', async () => {
+    test('should intercept API call on login without name of API', async () => {
         // Set up request interceptor to capture the API call
-        await context.route('**/dashboard/employees/action-summary', route => {
+        await context.route('**/action-summary', route => {
             const postData = route.request().postData();
-            console.log('API call intercepted');
+            console.log('API call intercepted', route.request().url());
             route.continue();
         });
 
@@ -34,7 +34,7 @@ test.describe('API interception test', () => {
         await page.click("//button[@type='submit']");
 
         // Wait for the API call to be intercepted
-        const response = await page.waitForResponse('**/dashboard/employees/action-summary');
+        const response = await page.waitForResponse('**/action-summary');
 
         // Assert on the response status code
         expect(response.status()).toBe(200);
@@ -44,6 +44,6 @@ test.describe('API interception test', () => {
 
         // Assert on the response data not being null
         expect(responseData).not.toBeNull;
-        console.log("API DATA WITH NAME:", responseData)
+        console.log("API DATA WITHOUT NAME:", responseData)
     });
 });
