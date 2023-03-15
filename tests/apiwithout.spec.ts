@@ -1,4 +1,6 @@
 import { test, expect, chromium } from '@playwright/test';
+import { loginPage } from './../Pages/loginPage';
+const formdata = JSON.parse(JSON.stringify(require("./../fixture/OrangeHR.json")));
 
 test.describe('API interception test', () => {
     let browser;
@@ -18,6 +20,7 @@ test.describe('API interception test', () => {
     });
 
     test('should intercept API call on login without name of API', async () => {
+        const loginpage = new loginPage(page);
         // Set up request interceptor to capture the API call
         await context.route('**/action-summary', route => {
             const postData = route.request().postData();
@@ -29,9 +32,7 @@ test.describe('API interception test', () => {
         await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
 
         // Fill in the login form and click the login button
-        await page.fill("//input[@name='username']", 'Admin');
-        await page.fill("//input[@name='password']", 'admin123');
-        await page.click("//button[@type='submit']");
+        loginpage.fillForm(formdata.username, formdata.password);
 
         // Wait for the API call to be intercepted
         const response = await page.waitForResponse('**/action-summary');
