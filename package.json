@@ -1,0 +1,21 @@
+{
+  "name": "playwright_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrhassanzaheer/playwright_API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrhassanzaheer/playwright_API/issues"
+  },
+  "homepage": "https://github.com/mrhassanzaheer/playwright_API#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.31.2"
+  }
+}
