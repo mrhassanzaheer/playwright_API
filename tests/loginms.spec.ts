@@ -12,14 +12,14 @@ test('ms', async () => {
     await page.click('.docs-sign-in.auth-status-determined.not-authenticated');
 
     // Fill in the login form
-    await page.fill('input[name="loginfmt"]', 'hassanzaheer1995@hotmail.com');
+    await page.fill('input[name="loginfmt"]', '');
     await page.click('#idSIButton9');
     //await page.click('#idA_PWD_SwitchToPassword');
     // Wait for the password field to appear
     await page.waitForSelector('#i0118');
 
     // Fill in the password field
-    await page.fill('input[name="passwd"]', 'Zlumasha1122');
+    await page.fill('input[name="passwd"]', '');
     await page.click('#idSIButton9');
 
     // Wait for the login to complete
